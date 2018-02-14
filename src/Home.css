@@ -1,0 +1,45 @@
+.Home-sidebar,
+.Home-header,
+.Home-main,
+.Home-footer {
+    padding: 10px;
+}
+
+.Home-sidebar {
+  grid-area: sidebar;
+  background-color: #2F404E;
+  color: #FDFFFC;
+}
+
+.Home-header {
+    grid-area: header;
+}
+
+.Home-main {
+    grid-area: main;
+    align-self: auto;
+}
+
+.Home-footer {
+    grid-area: footer;
+}
+.Home-footer input{
+    width: 90%;
+    height: 20px;
+    padding: 5px;
+}
+
+.Home {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 220px auto;
+  grid-template-rows: 60px auto 100px;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+}
