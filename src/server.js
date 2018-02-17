@@ -3,6 +3,7 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
+import constants from './constants';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -30,10 +31,10 @@ server
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
-        <title>xchat</title>
+        <title>${constants.APP_NAME}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
-        <script src="${assets.client.js}" defer></script>
+        <script src="${assets.client.js}" defer ${process.env.production ? '': 'crossorigin'}></script>
     </head>
     <body>
         <div id="root">${markup}</div>
