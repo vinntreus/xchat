@@ -3,11 +3,12 @@ class Channel {
         this.apply = applyFn;
     }
 
-    writeMessage({text='', from=0, sent=null}){
-        if(!text || !from || !sent){ return; }
+    writeMessage({id=null, text='', from=0, sent=null}){
+        if(!id || !text || !from || !sent){ return; }
         this.apply({
             type: 'writeMessage',
             data: {
+                id: id,
                 text: text,
                 from: from,
                 sent: sent
