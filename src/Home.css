@@ -43,3 +43,7 @@
     "sidebar main"
     "sidebar footer";
 }
+
+.Message-item.sending{
+  color: gray;
+}
