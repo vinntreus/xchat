@@ -10,6 +10,7 @@ class Home extends React.Component {
     };
     this.onMessageChange = this.onMessageChange.bind(this);
     this.onMessageKeyPress = this.onMessageKeyPress.bind(this);
+    this.messagesEnd = null;
   }
   sendMessage(message){
     let self = this;
@@ -53,6 +54,7 @@ class Home extends React.Component {
         <div className='Home-header'></div>
         <div className='Home-main'>
           <div className='Message-list'>{messages}</div>
+          <div style={{ float:"left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }}></div>
         </div>
         <div className='Home-footer'>
             <input
@@ -66,6 +68,21 @@ class Home extends React.Component {
         </div>
       </div>
     );
+  }
+  scrollToBottom = () => {
+    if(this.messagesEnd && this.messagesEnd.scrollIntoView){
+      this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    //Todo: this is troublesome when scrolling upwards and the page
+    // would update e.g when another user types something new.
+    this.scrollToBottom();
   }
 }
 
