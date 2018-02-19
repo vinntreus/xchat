@@ -2,6 +2,8 @@ import App from './App';
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
+import bodyParser from 'body-parser';
+
 import { renderToString } from 'react-dom/server';
 import constants from './constants';
 
@@ -11,8 +13,12 @@ const server = express();
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use(bodyParser.json())
   .get('/api/', (req, res) => {
       res.send('api hello');
+  })
+  .post('/api/messages/', (req, res) => {
+      res.send(req.body);
   })
   .get('/*', (req, res) => {
     const context = {};

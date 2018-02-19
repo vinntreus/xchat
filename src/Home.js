@@ -1,12 +1,14 @@
 import React from 'react';
 import './Home.css';
+import axios from 'axios';
 
 class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       message: '',
-      messages: []
+      messages: [],
+      errors: []
     };
     this.onMessageChange = this.onMessageChange.bind(this);
     this.onMessageKeyPress = this.onMessageKeyPress.bind(this);
@@ -14,7 +16,14 @@ class Home extends React.Component {
   }
   sendMessage(message){
     let self = this;
-    setTimeout(() => self.messageSent(message), 1000);
+    axios.post('/api/messages/', message)
+    .then(function (response) {
+      self.setState({errors: []});
+      self.messageSent(message);
+    })
+    .catch(function (error) {
+      self.setState({errors: [error]});
+    });
   }
   messageSent(message){
     let messages = this.state.messages;
@@ -46,6 +55,9 @@ class Home extends React.Component {
         <div key={i} className={css}>{m.text}</div>
       );
     });
+    const errors = this.state.errors.map((e, i) => {
+      return <div key={i} className='Error-item'>{e.toString()}</div>
+    });
     return (
       <div className='Home'>
         <div className='Home-sidebar'>
@@ -53,6 +65,7 @@ class Home extends React.Component {
         </div>
         <div className='Home-header'></div>
         <div className='Home-main'>
+          {errors}
           <div className='Message-list'>{messages}</div>
           <div style={{ float:'left', clear: 'both' }} ref={(el) => { this.messagesEnd = el; }}></div>
         </div>

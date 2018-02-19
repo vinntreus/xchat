@@ -49,3 +49,7 @@
 .Message-item.sending{
   color: gray;
 }
+.Error-item{
+  background-color: red;
+  color: white;
+}

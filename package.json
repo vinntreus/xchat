@@ -1,7 +1,11 @@
 {
   "name": "xchat",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "Apache",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinntreus/xchat.git"
+  },
   "scripts": {
     "start": "razzle start",
     "build": "razzle build",
@@ -9,6 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "axios": "0.17.1",
     "express": "4.16.2",
     "razzle": "0.8.12",
     "react": "16.2.0",
