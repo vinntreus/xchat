@@ -54,7 +54,7 @@ class Home extends React.Component {
         <div className='Home-header'></div>
         <div className='Home-main'>
           <div className='Message-list'>{messages}</div>
-          <div style={{ float:"left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }}></div>
+          <div style={{ float:'left', clear: 'both' }} ref={(el) => { this.messagesEnd = el; }}></div>
         </div>
         <div className='Home-footer'>
             <input
@@ -71,7 +71,7 @@ class Home extends React.Component {
   }
   scrollToBottom = () => {
     if(this.messagesEnd && this.messagesEnd.scrollIntoView){
-      this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+      this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
